@@ -1,0 +1,27 @@
+public class Solution {
+    public ListNode reverseList(ListNode head) {
+        if (head==null) return null;
+        else if (head.next==null) return head;
+        ListNode result;
+        ListNode originalHead = head;
+        int totalNumberOfHops = 0;
+        while(head.next!=null && head.next.next!=null){
+            head = head.next; totalNumberOfHops++;
+        }
+        head.next.next = head; result = head.next;
+        if (head!=originalHead) head = originalHead; 
+        totalNumberOfHops--;
+        while(totalNumberOfHops>0){
+            int hop = totalNumberOfHops;
+            while(hop>0) {
+                head = head.next;hop--;
+            }
+            head.next.next=head;
+            if (head!=originalHead) head = originalHead;
+            totalNumberOfHops--;
+        }
+        head.next.next = head;
+        head.next=null;
+        return result;
+    }
+}
