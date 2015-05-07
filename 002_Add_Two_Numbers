@@ -1,0 +1,61 @@
+public class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode realL1 = l1; ListNode realL2 = l2;
+        ListNode longer; ListNode shorter;
+        // Decide the number of nodes needed.
+        while(l1.next!=null && l2.next!=null){
+            l1 = l1.next;l2 = l2.next;
+        }
+        if(l1.next!=null){
+            shorter = realL2; longer = realL1;}
+        else {
+            shorter = realL1; longer = realL2;}
+        ListNode headToUse = longer;
+        int carry = 0;
+        int sum = 0;
+        while(shorter.next!=null){
+            sum = shorter.val + longer.val + carry;
+            if(sum<10) {
+                longer.val = sum; carry = 0;}
+            else {
+                longer.val = sum % 10; carry = 1;}
+            longer = longer.next;
+            shorter = shorter.next;
+        }
+        int lastShorterDigit = shorter.val;
+        // if both have the same number of digits.
+        if(longer.next==null){ 
+            sum = lastShorterDigit + longer.val + carry;
+            if(sum<10) {
+                longer.val = sum; carry = 0;}
+            else {
+                longer.val = sum % 10;
+                ListNode extra = new ListNode(1);
+                longer.next = extra; extra.next=null;
+            }
+        }
+        else{
+            while(longer.next!=null){
+                sum = lastShorterDigit + longer.val + carry;
+                if(sum<10) {
+                    longer.val = sum; carry = 0;}
+                else {
+                    longer.val = sum % 10;
+                    carry = 1; 
+                }
+                lastShorterDigit = 0;
+                longer = longer.next;
+            }
+            if (carry==1){
+                if ((longer.val+carry)<10)
+                    longer.val += carry;
+                else{
+                    ListNode extra = new ListNode(1);
+                    longer.val = 0;
+                    longer.next = extra;extra.next=null;
+                }
+            }
+        }
+        return headToUse;
+    }
+}

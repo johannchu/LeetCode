@@ -1,0 +1,24 @@
+import java.util.Hashtable;
+
+public class Solution {
+    Hashtable table = new Hashtable();
+    public int rob(int[] num) {
+        int total;
+        total = pickToRob(num,0,num.length-1);
+        return total;
+    }
+    public int pickToRob(int[] num, int start, int end){
+        int result;
+        if (table.containsKey(start)) return (int)table.get(start);
+        
+        if (end-start<0)  return 0;
+        else if (end-start==0) return num[start];
+        else if (end-start==1) return Math.max(num[start],num[end]);
+        else{
+            result = Math.max(num[start]+pickToRob(num,start+2,end), num[start+1]+pickToRob(num,start+3,end));
+        }
+        table.put(start,result);
+        return result;
+    }
+
+}

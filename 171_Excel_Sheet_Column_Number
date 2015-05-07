@@ -1,0 +1,14 @@
+public class Solution {
+    public int titleToNumber(String s) {
+        int numberOfDigit = s.length();
+        int total = 0;
+        for(int i=0;i<numberOfDigit;i++)
+        {
+            double baseOfDigit = java.lang.Math.pow(26,numberOfDigit - i - 1);
+            int asciiOfChar = (int)s.charAt(i) - 64;
+            total = total + asciiOfChar * (int)baseOfDigit;
+        }
+        return total;
+    }
+    
+}

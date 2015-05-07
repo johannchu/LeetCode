@@ -1,0 +1,21 @@
+public class Solution {
+    public static int reverseBits(int n) {
+        String strRepresent = Integer.toBinaryString(n);
+        System.out.println("Original binary string: "+strRepresent);
+        char[] charRepresent = strRepresent.toCharArray();
+
+        int lengthOfCharArray = charRepresent.length;
+        char[] newCharRep = new char[32];
+        for (int i=lengthOfCharArray-1;i>=0;i--){
+            newCharRep[lengthOfCharArray-1-i]=charRepresent[i];
+        }
+        for(int j=lengthOfCharArray;j<32;j++){
+            // ASCII code for '0'
+            newCharRep[j]=48;
+        }
+        String newStr = new String(newCharRep);
+        System.out.println("New binary string: " + newStr);
+        int result = Integer.parseUnsignedInt(newStr,2);
+        return result;
+    }
+}

@@ -1,0 +1,13 @@
+public class Solution {
+    // you need to treat n as an unsigned value
+    public int hammingWeight(int n) {
+        String strRepresent = Integer.toBinaryString(n);
+        char[] charRepresent = strRepresent.toCharArray();
+        int counter = 0;
+        for (int i=0;i<charRepresent.length;i++){
+            if (String.valueOf(charRepresent[i]).equals("1"))
+                counter++;
+        }
+        return counter;
+    }
+}

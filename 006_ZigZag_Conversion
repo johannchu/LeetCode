@@ -1,0 +1,27 @@
+public class Solution {
+    public String convert(String s, int nRows) {
+        if (s.equals(""))
+            return "";
+        StringBuffer[] listOfArrays = new StringBuffer[nRows];
+        for(int j=0;j<nRows;j++){
+            if (listOfArrays[j]==null)
+                listOfArrays[j] = new StringBuffer();
+        }
+        String[] sBreakDown = s.split("");
+        for(int i=0;i<sBreakDown.length;i++){
+            int remainder = 0;
+            if (nRows>1)
+                remainder = i % (nRows*2-2);
+            if (remainder <= nRows-1)
+                listOfArrays[remainder].append(sBreakDown[i]);
+            else{
+                listOfArrays[(nRows-1)*2-remainder].append(sBreakDown[i]);
+            }
+        }
+        StringBuffer result = new StringBuffer();
+        for(int k = 0;k<nRows;k++){
+            result.append(listOfArrays[k].toString());
+        }
+        return result.toString();
+    }
+}
