@@ -1,0 +1,23 @@
+public class Solution {
+    public int reverse(int x) {
+        if (x==0)
+            return 0;
+        long newKid = x;
+        if (x < 0)
+            newKid = newKid * (-1) ;
+        StringBuffer str = new StringBuffer();
+        while (newKid!=0){
+            int remainder = (int) (newKid % 10);
+            str.append(String.valueOf(remainder));
+            newKid = (newKid - remainder) / 10;
+        }
+        String something = str.toString();
+        long result = Long.parseLong(something);
+        if (x < 0)
+            result = result * (-1);
+        if (result>Integer.MAX_VALUE | result<Integer.MIN_VALUE)
+            return 0;
+
+        return (int)result;
+    }
+}

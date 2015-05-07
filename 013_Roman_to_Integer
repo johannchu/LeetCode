@@ -1,0 +1,51 @@
+public class Solution {
+    public int romanToInt(String s) {
+        // I:1, V:5, X:10, L:50, C:100, D:500, M:1000
+        int result = 0;
+        char[] components = s.toCharArray();
+        if (components.length==1)
+            return getNumber(components[0]);
+        int[] indication = new int[components.length];    
+        for(int i=0;i<components.length-1;i++){
+            if (getNumber(components[i])>=getNumber(components[i+1])){
+                indication[i] = 1;
+                indication[i+1] = 1;
+            }
+            else {
+                indication[i] = -1;
+                indication[i+1] = 1;
+            }
+        }
+        for(int j=0;j<components.length;j++){
+            result += getNumber(components[j]) * indication[j];
+        }
+        return result;
+    }
+    public int getNumber(char someChar){
+        switch(someChar){
+            case 73:
+                return 1;
+                
+            case 86:
+                return 5;
+                
+            case 88:
+                return 10;
+                
+            case 76:
+                return 50;
+                
+            case 67:
+                return 100;
+                
+            case 68:
+                return 500;
+                
+            case 77:
+                return 1000;
+                
+            default:
+                return 0;
+        }
+    }
+}

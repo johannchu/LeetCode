@@ -1,0 +1,11 @@
+public class Solution {
+    public boolean isPalindrome(int x) {
+        char[] someCharArray = String.valueOf(x).toCharArray();
+        int lengthOf = someCharArray.length;
+        for(int i=0;i<lengthOf/2;i++){
+            if(someCharArray[i]!=someCharArray[lengthOf-1-i])
+            return false;
+        }
+        return true;
+    }
+}

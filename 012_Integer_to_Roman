@@ -1,0 +1,82 @@
+public class Solution {
+    public String intToRoman(int num) {
+        StringBuffer result = new StringBuffer();
+        int numberOfM = num / 1000;
+        for(int i=0;i<numberOfM;i++){
+            result.append("M");
+        }
+        num -= numberOfM*1000;
+        // num would leave at most 2 digits.
+        if ((num>=400 && num<=499) || (num>=900 && num<=999)){
+            if(num>500) {
+                result.append("CM");
+                num -= 900;
+            }
+            else {
+                result.append("CD");
+                num -= 400;
+            }
+        }
+        // num would be at most 399.
+        else{
+            int numberOfD = num / 500;
+            for(int i=0;i<numberOfD;i++){
+                result.append("D");
+            }
+            num -= numberOfD*500;
+        }
+        int numberOfC = num / 100;
+        for(int i=0;i<numberOfC;i++){
+            result.append("C");
+        }
+        num -= numberOfC*100;
+        // Now num is definitely at most 2 digits.
+        if ((num>=40 && num<=49) || (num>=90 && num<=99)){
+            if(num>50) {
+                result.append("XC");
+                num -= 90;
+            }
+            else {
+                result.append("XL");
+                num -= 40;
+            }
+        }
+        else{
+            int numberOfL = num / 50;
+            for(int i=0;i<numberOfL;i++){
+                result.append("L");
+            }
+            num -= numberOfL*50;
+        }
+        
+        int numberOfX = num / 10;
+        for(int i=0;i<numberOfX;i++){
+            result.append("X");
+        }
+        num -= numberOfX*10;
+        
+        if ((num==4 || num==9)){
+            if(num>5) {
+                result.append("IX");
+                num -= 9;
+            }
+            else {
+                result.append("IV");
+                num -= 4;
+            }
+        }
+        else{
+            int numberOfV = num / 5;
+            for(int i=0;i<numberOfV;i++){
+                result.append("V");
+            }
+            num -= numberOfV*5;
+        }
+        
+        int numberOfI = num / 1;
+        for(int i=0;i<numberOfI;i++){
+            result.append("I");
+        }
+        return new String(result);
+    }
+}
