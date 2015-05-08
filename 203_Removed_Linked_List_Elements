@@ -1,0 +1,29 @@
+public class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        if (head==null) return null;
+        else if (head.next==null && head.val == val) return null;
+        ListNode runner;
+        ListNode realHead = head;
+        // Making sure the linked list does not start with val.
+        while(realHead.val==val && head.next!=null){
+            realHead = head.next;
+            head = head.next;
+        }
+        if (realHead.val==val) return null;
+        
+        while(head.next!=null){
+            runner = head.next;
+            if (runner.val==val){
+                if(runner.next==null) head.next=null;
+                else{
+                    while (runner.next!=null && runner.next.val==val) runner = runner.next;
+                    if (runner.next==null) head.next = null;
+                    else head.next = runner.next;
+                }
+            }
+            head = runner;
+        }
+        
+        return realHead;
+    }
+}
