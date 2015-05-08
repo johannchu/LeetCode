@@ -1,0 +1,25 @@
+import java.util.Hashtable;
+
+public class Solution {
+    public boolean isHappy(int n) {
+        Hashtable table = new Hashtable();
+        int total = 0;
+        // String input = String.valueOf(n);
+        table.put(n,1);
+        
+        while(!table.containsKey(1)){
+            total = 0;
+            String[] separate = input.split("");
+            int candidate = 0;
+            for(int i=0;i<separate.length;i++){
+                candidate = Integer.parseInt(separate[i]);
+                total += candidate * candidate;
+            }
+            String totalString = String.valueOf(total);
+            if (table.containsKey(totalString)) return false;
+            else table.put(totalString,1);
+            input = totalString;
+        }
+        return true;
+    }
+}
