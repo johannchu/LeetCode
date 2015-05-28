@@ -1,0 +1,51 @@
+public class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        String result;
+        int lengthOf = strs.length;
+        if (lengthOf==0)
+            return "";
+        else if (lengthOf==1){
+            return strs[0];
+        }
+        result = getPrefix(strs[0],strs[1]);
+        if (lengthOf>2){
+            int currentIndex = 2;
+            while (currentIndex < lengthOf){
+                result = getPrefix(result,strs[currentIndex]);
+                currentIndex++;
+            }
+        }
+        return result;
+    }
+    
+    public String getPrefix(String str1, String str2){
+        int benchmarkLength = 0;
+        StringBuffer strBuffer = new StringBuffer();
+        String[] str1Array = str1.split("");
+        System.out.println("Length of str1Array: " + str1Array.length);
+        String[] str2Array = str2.split("");
+        System.out.println("Length of str2Array: " + str2Array.length);
+        if(str1Array.length==0 || str2Array.length==0)
+            return "";
+
+        benchmarkLength = str1Array.length;
+        if (str1Array.length > str2Array.length)
+            benchmarkLength = str2Array.length;
+
+        int currentIndex = 0;
+
+        while(currentIndex<benchmarkLength){
+            if (str1Array[currentIndex].equals(str2Array[currentIndex])){
+                strBuffer.append(str1Array[currentIndex]);
+                currentIndex++;
+            }
+            else
+                currentIndex += benchmarkLength;
+        }
+
+        if (strBuffer.length()==0)
+            return "";
+        else
+            return strBuffer.toString();
+    }
+}

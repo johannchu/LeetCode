@@ -1,0 +1,24 @@
+import java.util.Stack;
+public class Solution {
+    public boolean isValid(String s) {
+        // Parenthesis, curly, bracket
+        Stack info = new Stack();
+        char[] charOfS = s.toCharArray();
+        for (int i=0;i<charOfS.length;i++){
+            if (charOfS[i]==40 || charOfS[i]==91 || charOfS[i]==123){
+                info.push(charOfS[i]);
+            }
+            else{
+                if (info.empty()==true)
+                    return false;
+                char top = (char)info.pop();
+                if (Math.abs(charOfS[i]-top)>2)
+                    return false;
+            }
+        }
+        if (info.empty()==true)
+            return true;
+        
+        return false;
+    }
+}
