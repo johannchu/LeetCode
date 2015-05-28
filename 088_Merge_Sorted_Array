@@ -1,0 +1,37 @@
+public class Solution {
+    public void merge(int A[], int m, int B[], int n) {
+        int[] duplicateA = new int[m];
+        int indexOfA = 0;
+        int indexOfB = 0;
+        int currentIndex = 0;
+        for(int i=0;i<m;i++){
+            duplicateA[i] = A[i];
+        }
+        while(indexOfA < m && indexOfB < n){
+            if (duplicateA[indexOfA]<=B[indexOfB]){
+                A[currentIndex] = duplicateA[indexOfA];
+                indexOfA++;
+            }
+            else{
+                A[currentIndex] = B[indexOfB];
+                indexOfB++;
+            }
+            currentIndex++;
+        }
+        if (indexOfA==m){
+            while(indexOfB<n){
+                A[currentIndex] = B[indexOfB];
+                currentIndex++;
+                indexOfB++;
+            }
+        }
+        else {
+            while(indexOfA<m){
+                A[currentIndex] = duplicateA[indexOfA];
+                currentIndex++;
+                indexOfA++;
+            }
+        }
+        
+    }
+}
